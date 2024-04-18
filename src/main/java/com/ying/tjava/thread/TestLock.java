@@ -1,6 +1,6 @@
 package com.ying.tjava.thread;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestLock {
 

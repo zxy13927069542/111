@@ -14,6 +14,7 @@ public class TestClassPath {
 	 *  如果前面不使用 "/" ,则指class文件所在目录
 	 */
 	static void readFromClassPath() {
+		System.out.println(TestClassPath.class.getResource("/log4j2.xml"));
 		try (InputStream input = TestClassPath.class.getResourceAsStream("/log4j2.xml")) {
 			String contend = new String(input.readAllBytes());
 			System.out.println(contend);

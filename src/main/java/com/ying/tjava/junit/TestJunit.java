@@ -1,16 +1,15 @@
 package com.ying.tjava.junit;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.*;
-
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestJunit {
 
 	@Test
 	public void exceptionTesting() {
-	    Assertions.assertThrows(
+		
+		assertThrows(
 	    		IllegalArgumentException.class,
 	           () -> {
 	        	   throw new IllegalArgumentException();

@@ -6,8 +6,8 @@ public class TestOutputStream {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		//	testWrite();
-		copyFile(args[0], args[1]);
+		testWrite();
+		//	copyFile(args[0], args[1]);
 	}
 
 	static void testWrite() {
