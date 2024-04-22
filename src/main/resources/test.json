@@ -1,0 +1,11 @@
+{
+    "id": 1,
+    "name": "Java核心技术",
+    "author": {
+        "firstName": "Abc",
+        "lastName": "Xyz"
+    },
+    "isbn": "9542-123-366-4567",
+    "tags": ["Java", "Network"],
+    "pubDate": "2024-03-06"
+}

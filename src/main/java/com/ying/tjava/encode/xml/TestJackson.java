@@ -17,7 +17,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
-import com.ying.tjava.encode.xml.Book;
+import com.ying.tjava.encode.Book;
+import com.ying.tjava.encode.Book.Isbn;
 
 /**
  * <book id="1">
@@ -56,13 +57,13 @@ public class TestJackson {
 		Book book = new Book();
 		book.setId("book-369");
 		book.setName("哈利波特");
-		book.setAuthor("大卫史密斯");
-		Isbn isbn = new Isbn();
+		book.setAuthor("大卫史密斯11");
+		Isbn isbn = book.new Isbn();
 		isbn.setLang("zh_CN");
 		isbn.setValue("95426753");
 		book.setIsbn(isbn);
 		book.setTags(List.of("story", "fantasy"));
-		book.setPubDate("2022-06-09");
+		book.setPubDate("2022-06-09");	
 		
 		ObjectMapper xmlMapper = new XmlMapper();
 		//	加缩进

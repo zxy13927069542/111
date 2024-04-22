@@ -1,11 +1,13 @@
-package com.ying.tjava.encode.xml;
+package com.ying.tjava.encode;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
+import com.ying.tjava.encode.Book.Isbn;
 
 /**
  * <book id="1">
@@ -42,6 +44,20 @@ public class Book {
 	private List<String> tags;
 	private String pubDate;
 	
+	public void printf() throws IllegalArgumentException, IllegalAccessException {
+		Class m = getClass();
+		for (Field f : m.getDeclaredFields()) {
+			f.setAccessible(true);
+			
+			if (f.toString().contains("Isbn")) {
+				Isbn isbn = (Isbn) f.get(this);
+				System.out.printf("lang:%s value: %s\n", isbn.getLang(), isbn.getValue());
+				continue;
+			}
+			
+			System.out.printf("%s:%s\n", f, f.get(this));
+		}
+	}
 	
 	public Book() {
 	}
@@ -107,38 +123,33 @@ public class Book {
 	}
 
 
+	public class Isbn {
+		//	将lang属性注入
+		@JacksonXmlProperty(isAttribute = true)
+		private String lang;
+		//	将TEXT文本注入
+		@JacksonXmlText
+		private String value;
 
-	
-}
+		public Isbn() {
+		}
 
-class Isbn {
-	//	将lang属性注入
-	@JacksonXmlProperty(isAttribute = true)
-	private String lang;
-	//	将TEXT文本注入
-	@JacksonXmlText
-	private String value;
+		public String getLang() {
+			return lang;
+		}
 
-	public Isbn() {
+		public void setLang(String lang) {
+			this.lang = lang;
+		}
+
+		public String getValue() {
+			return value;
+		}
+
+		public void setValue(String value) {
+			this.value = value;
+		}
 	}
-
-	public String getLang() {
-		return lang;
-	}
-
-	public void setLang(String lang) {
-		this.lang = lang;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-	
-	
 
 	
 }
