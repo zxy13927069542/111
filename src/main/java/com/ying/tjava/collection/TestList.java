@@ -89,13 +89,13 @@ public class TestList {
 	static void findMissingNumber() {
 		int start = 10;
 		int end = 20;
-		List<Integer> l = new ArrayList<>();
+		ArrayList<Integer> l = new ArrayList<>();
 		for (int i = start; i <= end; i++) {
 			l.add(i);
 		}
 		int removed = l.remove((int)(Math.random() * l.size()));
 		
-		var temp = l.getFirst();
+		int temp = l.get(0);
 		var found = 0;
 		for (int i : l) {
 			if (temp != i) {
@@ -148,6 +148,11 @@ public class TestList {
 	        );
 	        boolean exist = list.contains(new Person("Bob", "Smith", 20));
 	        System.out.println(exist ? "测试成功!" : "测试失败!");
+	}
+	
+	//	生成一个冒泡排序
+	static void bubbleSort(int[] arr) {
+		
 	}
 }
 
