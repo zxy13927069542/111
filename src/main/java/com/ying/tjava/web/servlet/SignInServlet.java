@@ -8,9 +8,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 @WebServlet("/signin")
 public class SignInServlet extends HttpServlet {
+    private Map<String, String> users = Map.of("zxy", "zxy19981025", "zby", "zby20000632", "zsx","199821");
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
@@ -26,6 +29,14 @@ public class SignInServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String name = req.getParameter("username");
+        String password = req.getParameter("password");
+        if (users.containsKey(name) && users.get(name).equals(password)) {
+            req.getSession().setAttribute("user", name);
+            resp.sendRedirect("/index");
+        } else {
+            resp.sendError(HttpServletResponse.SC_FORBIDDEN);
 
+        }
     }
 }

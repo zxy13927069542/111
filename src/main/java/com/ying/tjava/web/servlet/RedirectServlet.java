@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * 通过@WebServlet绑定路由
  */
-@WebServlet("/")
+@WebServlet("/aaa")
 public class RedirectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

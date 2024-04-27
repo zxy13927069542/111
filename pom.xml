@@ -93,6 +93,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--第三方类加载器，用于扫描controllers-->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
