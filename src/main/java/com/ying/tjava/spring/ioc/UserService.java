@@ -1,13 +1,18 @@
 package com.ying.tjava.spring.ioc;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+
 @Component("userService")
+//  @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)     //  @Scope("prototype")
 public class UserService {
     @Autowired
     private MailService mailService;
