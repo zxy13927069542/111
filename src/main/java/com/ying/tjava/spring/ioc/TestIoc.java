@@ -33,7 +33,9 @@ import java.sql.SQLException;
  *
  * @PostConstruct 和 @PreDestroy 可以在Bean被创建时和被摧毁时调用，摧毁时需要显式调用 context.close()
  *
- * @Qualifier: 可以指定注入的Bean名称
+ * @Qualifier: 可以指定注入的Bean名称,与@Autowired一起使用
+ *
+ *
  */
 
 @Configuration
