@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.SQLException;
@@ -35,12 +36,33 @@ import java.sql.SQLException;
  *
  * @Qualifier: 可以指定注入的Bean名称,与@Autowired一起使用
  *
+ * 通过org.springframework.core.io.Resource配合 @value("classpath:/test.json")可以自动注入文件
+ *
+ * @PropertySource("classpath:/db.properties"): 加载Properties文件
+ * 配合 @value("${url}") 可以自动注入配置文件中的属性，可以参考 com.ying.tjava.spring.ioc.Utils
+ *
+ * @Profile: 可以指定Bean在什么环境下创建. 例如：
+ *              @Profile("test"): 在test环境下创建
+ *              @Profile("!test"): 在非test环境下测试
+ *              @Profile({"test", "master"}) 满足 test 或 master
+ * 在运行时，可以通过 JVM 参数指定运行环境：
+ *              指定为test环境：-Dspring.profiles.active=test
+ *              test环境，并使用master分支代码：-Dspring.profiles.active=test,master
+ *
+ *
+ *
+ *
  *
  */
 
 @Configuration
 @ComponentScan
+@EnableAspectJAutoProxy
 public class TestIoc {
+
+    public static void main(String[] args) throws SQLException {
+        new TestIoc().useXml();
+    }
 
     @Test
     public void testApplicationContext() throws SQLException {

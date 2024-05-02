@@ -1,10 +1,12 @@
 package com.ying.tjava.spring.ioc;
 
+import com.ying.tjava.spring.ioc.condition.OnSmtpEnvCondition;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 
 @Component("mailService")
+@Conditional(OnSmtpEnvCondition.class)
 public class MailService {
     @Autowired
     @Qualifier("dataSource")
@@ -35,6 +38,7 @@ public class MailService {
 
         //  test Resource
         resource.getInputStream().transferTo(System.out);
+        System.out.println();
     }
 
     @PreDestroy

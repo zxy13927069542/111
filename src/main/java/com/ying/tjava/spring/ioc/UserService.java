@@ -1,9 +1,7 @@
 package com.ying.tjava.spring.ioc;
 
+import com.ying.tjava.spring.aop.aspect.annotation.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -36,6 +34,7 @@ public class UserService {
     }
 
     //  模拟业务代码
+    @Log
     public void bussinessCode() throws SQLException {
         Connection conn = dataSource.getConnection();
         System.out.println(conn.isClosed() ? "连接已关闭" : "连接已打开");
