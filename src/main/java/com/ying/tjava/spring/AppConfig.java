@@ -1,20 +1,24 @@
-package com.ying.tjava.spring.jdbc;
+package com.ying.tjava.spring;
 
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  * @EnableTransactionManagement: 开启声明式事务，添加该注释后，不需要在添加@EnableAspectJAutoProxy
@@ -29,12 +33,15 @@ import java.sql.SQLException;
  *
  */
 
-@ComponentScan
+@ComponentScan({"com.ying.tjava.spring.jdbc", "com.ying.tjava.spring.mvc"})
 @Configuration
 @PropertySource("classpath:/db.properties")
 @EnableTransactionManagement
-@MapperScan("com.ying.tjava.spring.jdbc")
+@MapperScan()
+@EnableWebMvc
 public class AppConfig {
+    static final Log log = LogFactory.getLog(AppConfig.class);
+
     @Value("${url}")
     private String url;
 
@@ -58,14 +65,13 @@ public class AppConfig {
 
 
     @Bean(name = "dataSource")
-    public DataSource getDataSource() throws SQLException {
+    public DataSource getDataSource() {
         HikariDataSource ds = new HikariDataSource();
         ds.setJdbcUrl(url);
         ds.setUsername(userName);
         ds.setPassword(password);
         ds.setAutoCommit(true);
         ds.setMaximumPoolSize(10);
-        Connection conn = ds.getConnection();
         return ds;
     }
 
@@ -89,6 +95,9 @@ public class AppConfig {
     //  spring 事务管理器
     @Bean
     public PlatformTransactionManager createTxManager(@Autowired DataSource dataSource) {
+        log.info("spring 事务管理器创建成功!");
         return new DataSourceTransactionManager(dataSource);
     }
+
+
 }

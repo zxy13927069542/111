@@ -4,7 +4,6 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.sql.DataSource;
@@ -26,11 +25,6 @@ public class Utils {
     @Value("${password}")
     private String password;
 
-    @Value("${autoCommit}")
-    private boolean autoCommit;
-
-    @Value("${poolSize}")
-    private int poolSize;
 
 
     public void setUrl(String url) {
@@ -45,23 +39,15 @@ public class Utils {
         this.password = password;
     }
 
-    public void setAutoCommit(boolean autoCommit) {
-        this.autoCommit = autoCommit;
-    }
-
-    public void setPoolSize(int poolSize) {
-        this.poolSize = poolSize;
-    }
-
     @Bean(name = "dataSource")
-    @Profile("test")
+//    @Profile("test")
     public DataSource getDataSource() {
         HikariDataSource ds = new HikariDataSource();
         ds.setJdbcUrl(url);
         ds.setUsername(userName);
         ds.setPassword(password);
-        ds.setAutoCommit(autoCommit);
-        ds.setMaximumPoolSize(poolSize);
+        ds.setAutoCommit(true);
+        ds.setMaximumPoolSize(10);
         return ds;
     }
 }

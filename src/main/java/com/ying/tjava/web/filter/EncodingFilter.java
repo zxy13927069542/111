@@ -12,7 +12,7 @@ import java.io.IOException;
  *
  * @WebFilter("/user/*") 设置过滤组
  */
-@WebFilter("/*")
+@WebFilter("/encode/*")
 public class EncodingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
