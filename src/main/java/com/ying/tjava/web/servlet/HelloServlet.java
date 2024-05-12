@@ -16,19 +16,6 @@ import java.sql.SQLException;
 public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HikariDataSource ds = new HikariDataSource();
-        ds.setJdbcUrl("jdbc:mysql://localhost:3306/tjava");
-        ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUsername("root");
-        ds.setPassword("066311");
-        ds.setAutoCommit(true);
-        ds.setMaximumPoolSize(10);
-        try {
-            Connection conn = ds.getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
         String name = req.getParameter("name");
         if (name == null) {
             resp.setHeader("Content-Type", "application/json");

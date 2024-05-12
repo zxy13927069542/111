@@ -1,7 +1,12 @@
 package com.ying.tjava.spring.jdbc;
 
+
+import com.ying.tjava.spring.jdbc.utils.FuzzyQuery;
+
 public class Student {
     private long id;
+
+    @FuzzyQuery("fuzzy")
     private String name;
     private int gender;
     private int grade;

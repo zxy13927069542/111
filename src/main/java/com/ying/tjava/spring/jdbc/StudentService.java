@@ -1,6 +1,8 @@
 package com.ying.tjava.spring.jdbc;
 
 
+import com.ying.tjava.spring.jdbc.utils.SQLUtils;
+import com.ying.tjava.spring.jdbc.utils.SqlCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -71,6 +73,10 @@ public class StudentService {
 
     public List<Student> ListByGrade1(int grade) {
         return studentMapper.ListByGrade(grade, 0, 10);
+    }
+
+    public List<Student> list(Student student, int page, int limit) {
+        return studentMapper.list(student, (page - 1) * limit, limit);
     }
 
     @Transactional
