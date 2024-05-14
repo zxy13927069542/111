@@ -20,4 +20,14 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>studentAuthFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>studentAuthFilter</filter-name>
+        <url-pattern>/student/*</url-pattern>
+    </filter-mapping>
+
 </web-app>

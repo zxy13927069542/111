@@ -12,8 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -22,7 +20,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
-import java.util.List;
 
 /**
  * @EnableTransactionManagement: 开启声明式事务，添加该注释后，不需要在添加@EnableAspectJAutoProxy
@@ -69,15 +66,15 @@ public class AppConfig implements WebMvcConfigurer {
 
 
     //  配置消息转换器，可搭配注解@ResponseBody将对象以json格式输出
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(jacksonMessageConverter());
-    }
-
-    @Bean
-    public MappingJackson2HttpMessageConverter jacksonMessageConverter() {
-        return new MappingJackson2HttpMessageConverter();
-    }
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        converters.add(jacksonMessageConverter());
+//    }
+//
+//    @Bean
+//    public MappingJackson2HttpMessageConverter jacksonMessageConverter() {
+//        return new MappingJackson2HttpMessageConverter();
+//    }
 
     @Bean(name = "dataSource")
     public DataSource getDataSource() {

@@ -1,6 +1,7 @@
 package com.ying.tjava.spring.jdbc;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ying.tjava.spring.jdbc.utils.FuzzyQuery;
 
 public class Student {
@@ -10,6 +11,8 @@ public class Student {
     private String name;
     private int gender;
     private int grade;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int score;
 
     public Student() {}

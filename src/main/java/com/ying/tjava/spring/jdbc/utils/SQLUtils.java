@@ -19,16 +19,15 @@ public class SQLUtils {
         for (Field f : fields) {
             f.setAccessible(true);
             if (f.isAnnotationPresent(FuzzyQuery.class)) {
-                FuzzyQuery query = f.getAnnotation(FuzzyQuery.class);
-                sb.append(" and ").append(f.getName()).append(" like '%?%'");
+                sb.append(String.format(" and %s like '%%%s%%'",f.getName(), f.getName()));
                 params.add(f.get(object));
             } else {
-                sb.append(" and ").append(f.getName()).append(" = ?");
+                sb.append(String.format(" and %s = #{%s}", f.getName(), f.getName()));
                 params.add(f.get(object));
             }
         }
 
-        String sqlCond = sb.substring(5).toString();
+        String sqlCond = sb.substring(5);
         return new SqlCondition(sqlCond, params.toArray());
     }
 

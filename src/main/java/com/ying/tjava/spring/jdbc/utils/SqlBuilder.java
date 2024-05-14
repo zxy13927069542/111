@@ -19,6 +19,13 @@ public class SqlBuilder {
         if (student.getGender() != 0) {
             sql.WHERE("gender = #{student.gender}");
         }
+        if (student.getScore() != 0) {
+            sql.WHERE("score = #{student.score}");
+        }
         return sql.OFFSET("#{offset}").LIMIT("#{limit}").toString();
     }
+
+//    public String buildListSql(@Param("student") Student student, @Param("offset") int offset, @Param("limit") int limit) {
+//
+//    }
 }
