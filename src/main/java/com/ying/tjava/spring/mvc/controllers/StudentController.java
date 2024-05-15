@@ -25,8 +25,28 @@ import java.util.List;
  * @JsonProperty: 可以通过该注解的access属性来控制字段的输入和输出
  *                  @JsonProperty(access = Access.WRITE_ONLY): 只写
  *                  @JsonProperty(access = Access.READ_ONLY): 只读
+ *
+ * 跨域问题：跨域问题仅存在于浏览器访问，使用postman等工具并不存在跨域问题
+ * 可以通过@CrossOrigin("http://localhost.com:8080")解决
+ * 可以通过在WebMvcConfigurer进行配置解决，如：
+ *      @Bean
+ *      WebMvcConfigurer createWebMvcConfigurer() {
+ *          return new WebMvcConfigurer() {
+ *              @Override
+ *              public void addCorsMappings(CorsRegistry registry) {
+ *                  registry.addMapping("/api/**")
+ *                     .allowedOrigins("http://local.liaoxuefeng.com:8080")
+ *                     .allowedMethods("GET", "POST")
+ *                     .maxAge(3600);
+ *                   // 可以继续添加其他URL规则:
+ *                  // registry.addMapping("/rest/v2/**")...
+ *         }
+ *     };
+ * }
+ * postman可以通过添加消息头如Origin:http://localhost.com:8080来测试接口是否支持跨域
  */
 
+@CrossOrigin("http://localhost.com:8080")
 @RestController
 @RequestMapping("/student")
 public class StudentController {

@@ -1,6 +1,7 @@
 package com.ying.tjava.spring;
 
 
+import com.ying.tjava.spring.mvc.controllers.LogInterceptor;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,7 +17,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
@@ -64,6 +67,17 @@ public class AppConfig implements WebMvcConfigurer {
         this.password = password;
     }
 
+
+    //  注册Interceptor拦截器，并设置拦截范围
+    @Bean
+    public WebMvcConfigurer createWebMvcConfigurer(@Autowired HandlerInterceptor[] interceptors) {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addInterceptors(InterceptorRegistry registry) {
+                registry.addInterceptor(new LogInterceptor()).addPathPatterns("/student/list");
+            }
+        };
+    }
 
     //  配置消息转换器，可搭配注解@ResponseBody将对象以json格式输出
 //    @Override
