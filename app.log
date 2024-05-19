@@ -1,0 +1,12 @@
+2024-05-18T11:40:34.905+08:00  INFO 9140 --- [tspringboot] [main] c.y.t.t.TspringbootApplication           : Starting TspringbootApplication using Java 22 with PID 9140 (D:\workspace\java_works\tjava\tspringboot\target\classes started by zheng in D:\workspace\java_works\tjava)
+2024-05-18T11:40:34.907+08:00  INFO 9140 --- [tspringboot] [main] c.y.t.t.TspringbootApplication           : No active profile set, falling back to 1 default profile: "default"
+2024-05-18T11:40:36.069+08:00  INFO 9140 --- [tspringboot] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-05-18T11:40:36.080+08:00  INFO 9140 --- [tspringboot] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-18T11:40:36.081+08:00  INFO 9140 --- [tspringboot] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-05-18T11:40:36.177+08:00  INFO 9140 --- [tspringboot] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-05-18T11:40:36.178+08:00  INFO 9140 --- [tspringboot] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1233 ms
+2024-05-18T11:40:36.639+08:00  INFO 9140 --- [tspringboot] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-05-18T11:40:36.646+08:00  INFO 9140 --- [tspringboot] [main] c.y.t.t.TspringbootApplication           : Started TspringbootApplication in 2.998 seconds (process running for 4.641)
+2024-05-18T11:41:16.592+08:00  INFO 9140 --- [tspringboot] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-18T11:41:16.592+08:00  INFO 9140 --- [tspringboot] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-05-18T11:41:16.593+08:00  INFO 9140 --- [tspringboot] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
